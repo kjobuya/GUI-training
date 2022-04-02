@@ -10,14 +10,24 @@ class my_window(QMainWindow):
         
     def UISetup(self):
         self.setWindowTitle("My App")
+        self.setFixedSize(QSize(400,400))
         self.button = QPushButton("Press Me!")
         
-        self.button.setFixedSize()
+        self.button.setCheckable(True)
+        self.button.toggle()
+        self.button.clicked.connect(self.ButtonClickedEvent)
+        self.button.clicked.connect(self.ButtonToggledEvent)
 
         # Set the central widget of the Window.
         self.setCentralWidget(self.button)
         # self.setFixedSize(QSize(400, 300))
         self.setMaximumSize(QSize(400,300))
+        
+    def ButtonClickedEvent(self):
+        print ("clicked")
+        
+    def ButtonToggledEvent(self, checked):
+        print("Toggle state: " + str(checked))
         
 app = QApplication([])
 
